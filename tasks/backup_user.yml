@@ -1,0 +1,12 @@
+---
+# tasks file for roles/backup
+
+- name: "backup files from remote hoste into local host - {{ backup_host_dir }} ({{ backup_user }})"
+  become: yes
+  become_user: "{{ backup_user }}"
+  synchronize:
+    src: "{{ item }}"
+    dest: "{{ backup_host_dir }}"
+    mode: pull
+  loop: "{{ backup_remote_dirs | flatten(levels=1) }}"
+  tags: backup

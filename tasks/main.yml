@@ -1,0 +1,16 @@
+---
+# tasks file for roles/backup
+
+- name: backup files/folders (per user)
+  include: backup_user.yml
+  loop: "{{ backup_users | flatten(levels=1) }}"
+  loop_control:
+    loop_var: backup_user
+  when: backup_config.backup is defined and backup_config.backup and backup_users is defined and backup_users is not none
+
+- name: restore files/folders (per user)
+  include: restore_user.yml
+  loop: "{{ backup_users | flatten(levels=1) }}"
+  loop_control:
+    loop_var: backup_user
+  when: backup_config.restore is defined and backup_config.restore and backup_users is defined and backup_users is not none

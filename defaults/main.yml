@@ -1,0 +1,35 @@
+---
+# defaults file for roles/backup
+
+backup_config:
+  backup: no
+  restore: no
+
+backup_users:
+  - "{{ ansible_user }}"
+
+# ------------------------------------------------------------------------------
+# from client to host, for backup
+backup_remote_dirs:
+  - "/home/{{ backup_user }}/Desktop"
+  - "/home/{{ backup_user }}/Documents"
+  - "/home/{{ backup_user }}/Music"
+  - "/home/{{ backup_user }}/Pictures"
+  - "/home/{{ backup_user }}/Videos"
+  - "/home/{{ backup_user }}/Templates"
+  - "/home/{{ backup_user }}/.ssh"
+  - "/home/{{ backup_user }}/.thunderbird"
+backup_host_dir: "~/Backup/{{ backup_user }}/"
+
+# ------------------------------------------------------------------------------
+# from host to client, for restore
+restore_backuped_dirs:
+  - "~/Backup/{{ backup_user }}/Desktop"
+  - "~/Backup/{{ backup_user }}/Documents"
+  - "~/Backup/{{ backup_user }}/Music"
+  - "~/Backup/{{ backup_user }}/Pictures"
+  - "~/Backup/{{ backup_user }}/Videos"
+  - "~/Backup/{{ backup_user }}/Templates"
+  - "~/Backup/{{ backup_user }}/.ssh"
+  - "~/Backup/{{ backup_user }}/.thunderbird"
+restore_remote_dir: "/home/{{ backup_user }}/"

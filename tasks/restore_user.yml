@@ -1,0 +1,14 @@
+---
+# tasks file for roles/backup
+
+- name: "restore files from local host into remote host - {{ restore_remote_dir }} ({{ backup_user }})"
+  become: yes
+  become_user: "{{ backup_user }}"
+  synchronize:
+    src: "{{ item }}"
+    dest: "{{ restore_remote_dir }}"
+    mode: push
+  ignore_errors: yes
+  loop: "{{ restore_backuped_dirs | flatten(levels=1) }}"
+  tags: restore
+# TODO: set correct owner and grant
