@@ -10,6 +10,7 @@ backup_users:
 
 # ------------------------------------------------------------------------------
 # from client to host, for backup
+# zip "${USER}_bak.zip"  ./Desktop ./Documents ./Music ./Pictures ./Videos ./Templates ./Public ./Videos ./snap ./.config ./.local ./.ssh ./.thunderbird
 backup_remote_dirs:
   - "/home/{{ backup_user }}/Desktop"
   - "/home/{{ backup_user }}/Documents"
@@ -17,6 +18,11 @@ backup_remote_dirs:
   - "/home/{{ backup_user }}/Pictures"
   - "/home/{{ backup_user }}/Videos"
   - "/home/{{ backup_user }}/Templates"
+  - "/home/{{ backup_user }}/Public"
+  - "/home/{{ backup_user }}/Videos"
+  - "/home/{{ backup_user }}/snap"
+  - "/home/{{ backup_user }}/.config"
+  - "/home/{{ backup_user }}/.local"
   - "/home/{{ backup_user }}/.ssh"
   - "/home/{{ backup_user }}/.thunderbird"
 backup_host_dir: "~/Backup/{{ backup_user }}/"
@@ -24,12 +30,13 @@ backup_host_dir: "~/Backup/{{ backup_user }}/"
 # ------------------------------------------------------------------------------
 # from host to client, for restore
 restore_backuped_dirs:
-  - "~/Backup/{{ backup_user }}/Desktop"
-  - "~/Backup/{{ backup_user }}/Documents"
-  - "~/Backup/{{ backup_user }}/Music"
-  - "~/Backup/{{ backup_user }}/Pictures"
-  - "~/Backup/{{ backup_user }}/Videos"
-  - "~/Backup/{{ backup_user }}/Templates"
-  - "~/Backup/{{ backup_user }}/.ssh"
-  - "~/Backup/{{ backup_user }}/.thunderbird"
+  - "~/Backup/{{ backup_user }}/"
+  # - "~/Backup/{{ backup_user }}/Desktop"
+  # - "~/Backup/{{ backup_user }}/Documents"
+  # - "~/Backup/{{ backup_user }}/Music"
+  # - "~/Backup/{{ backup_user }}/Pictures"
+  # - "~/Backup/{{ backup_user }}/Videos"
+  # - "~/Backup/{{ backup_user }}/Templates"
+  # - "~/Backup/{{ backup_user }}/.ssh"
+  # - "~/Backup/{{ backup_user }}/.thunderbird"
 restore_remote_dir: "/home/{{ backup_user }}/"
