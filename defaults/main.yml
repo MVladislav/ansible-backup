@@ -10,7 +10,7 @@ backup_users:
 
 # ------------------------------------------------------------------------------
 # from client to host, for backup
-# zip "${USER}_bak.zip"  ./Desktop ./Documents ./Music ./Pictures ./Videos ./Templates ./Public ./Videos ./snap ./.config ./.local ./.ssh ./.thunderbird
+# zip "${USER}_bak.zip"  ./Desktop ./Documents ./Music ./Pictures ./Videos ./Templates ./Public ./Videos ./snap ./.config ./.local ./.ssh ./.mozilla ./.thunderbird ./.sqldeveloper
 backup_remote_dirs:
   - "/home/{{ backup_user }}/Desktop"
   - "/home/{{ backup_user }}/Documents"
@@ -24,7 +24,9 @@ backup_remote_dirs:
   - "/home/{{ backup_user }}/.config"
   - "/home/{{ backup_user }}/.local"
   - "/home/{{ backup_user }}/.ssh"
+  - "/home/{{ backup_user }}/.mozilla"
   - "/home/{{ backup_user }}/.thunderbird"
+  - "/home/{{ backup_user }}/.sqldeveloper"
 backup_host_dir: "~/Backup/{{ backup_user }}/"
 
 # ------------------------------------------------------------------------------
