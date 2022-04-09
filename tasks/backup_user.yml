@@ -2,7 +2,7 @@
 # tasks file for roles/backup
 
 - name: "backup files from remote hoste into local host - {{ backup_host_dir }} ({{ backup_user }})"
-  become: yes
+  become: true
   become_user: "{{ backup_user }}"
   synchronize:
     src: "{{ item }}"
